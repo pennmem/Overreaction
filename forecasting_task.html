@@ -1,0 +1,723 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Forecasting Task</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&display=swap">
+  <style>
+    body { font-family: "Source Serif 4", system-ui, -apple-system, Segoe UI, Roboto, Arial, serif; max-width: 1000px; margin: 36px auto; padding: 0 16px; }
+    .card { border: 1px solid #ddd; border-radius: 14px; padding: 18px 20px; margin: 14px 0; }
+    .row { display:flex; gap:14px; flex-wrap:wrap; align-items:flex-end; }
+    .row > div { min-width: 220px; }
+    label { display:block; margin: 10px 0 6px; }
+    input[type="number"]{ width: 200px; padding: 8px; border-radius: 10px; border: 1px solid #ccc; }
+    button { padding: 10px 14px; border-radius: 10px; border: 1px solid #ccc; background: #f8f8f8; cursor: pointer; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .muted { color:#666; font-size: 0.95rem; }
+    .big { font-size: 1.2rem; }
+    .topbar { display:flex; justify-content:space-between; gap: 12px; flex-wrap:wrap; align-items:flex-start; }
+    .topbar-right { margin-left:auto; text-align:right; }
+    code { background:#f2f2f2; padding:2px 6px; border-radius:6px; }
+    .debug-meta { display:none; } 
+    .center { text-align:center; }
+    .value-big { font-size: 3rem; font-weight: 600; letter-spacing: 0.5px; }
+    .pill { display:inline-block; padding: 2px 10px; border-radius: 999px; background: #f1f1f1; border: 1px solid #e6e6e6; font-size: 0.95rem; }
+    .word { font-size: 2.2rem; font-weight: 600; letter-spacing: 0.5px; }
+    .btnrow { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top: 14px; }
+    .btn-primary { background: #111; color: #fff; border-color:#111; }
+    .btn-choice { min-width: 200px; padding: 12px 14px; border-radius: 12px; background: #fafafa; }
+    .hidden { display:none; }
+    .scale-wrap { width: min(720px, 100%); margin: 12px auto 0; }
+    .scale-labels { display:flex; justify-content:space-between; font-size: 0.9rem; color:#666; margin: 0 2px 6px; }
+    .scale-bar { position: relative; height: 18px; border-radius: 999px; background: linear-gradient(90deg, #f3f3f3, #fafafa); border: 1px solid #e6e6e6; overflow: hidden; }
+    .scale-fill { position:absolute; inset: 0 auto 0 0; width: 0%; background: #4a90e2; opacity: 0.55; }
+    .scale-tick { position:absolute; top: -6px; width: 2px; height: 30px; background: #222; opacity: 0.35; }
+    .scale-actual { position:absolute; top: 50%; transform: translate(-50%, -50%); width: 12px; height: 12px; border-radius: 999px; background:#111; box-shadow: 0 0 0 3px rgba(17,17,17,0.15); }
+    .scale-forecast { position:absolute; top: 50%; transform: translate(-50%, -50%); width: 12px; height: 12px; border-radius: 999px; background:#d11; box-shadow: 0 0 0 3px rgba(209,17,17,0.18); }
+    .scale-legend { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top: 10px; color:#444; font-size: 0.95rem; }
+    .legend-dot { display:inline-block; width: 10px; height: 10px; border-radius: 999px; margin-right: 6px; vertical-align: middle; }
+  </style>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  <script src="./wordpool.js"></script>
+</head>
+<body>
+  <h1>Forecasting Task</h1>
+
+  <div id="screen-consent" class="card">
+    <p class="big"><b>Consent</b></p>
+    <p class="muted">
+     You will forecast values of a stable random process across multiple rounds. You will first observe 20 past realizations of the process and then will forecast for 40 periods thereafter.
+      Between trials, you will complete a short word-judgment task. Your bonus depends on your forecast accuracy.
+    </p>
+    <label><input id="consent" type="checkbox"> I consent to participate.</label>
+    <button id="btn-begin">Begin</button>
+  </div>
+
+  <div id="screen-instructions" class="card" style="display:none;">
+    <div class="topbar">
+      <div>
+        <p class="big"><b>Instructions</b></p>
+        <p class="muted">
+          This study has two phases:
+          an <b>observation phase</b> (where you observe values one-by-one), followed by a <b>forecasting phase</b> (where you predict the next value and then see the true value).
+        </p>
+        <p class="muted">
+        Your scoring per forecast is $S = 100 \times \max\bigl(0, 1 - \lvert \text{forecast} - \text{realization} \rvert / 20\bigr)$, and your total score is the sum across all forecasts.
+        Your score will then be linearly converted to an additional bonus roughly between \$0 and \$5. You will also recieve a base payment of \$3. 
+        </p>
+      </div>
+      <div class="debug-meta">
+        <p class="muted">Participant ID: <code id="pid"></code></p>
+        <p class="muted">Condition (ρ): <code id="rho"></code></p>
+        <p class="muted">Encoding: <code id="enc"></code></p>
+        <p class="muted">Distractor: <code id="dist"></code></p>
+      </div>
+    </div>
+
+    <p class="muted">
+      Between both observation and forecasting phases, you will do a timed word-judgment distractor task.
+      The duration varies from trial to trial.
+    </p>
+
+    <button id="btn-start-task" class="btn-primary">Start</button>
+  </div>
+
+  <div id="screen-observe" class="card" style="display:none;">
+    <div class="topbar">
+      <div>
+        <p class="big"><b>Observation phase</b></p>
+        <p class="muted">Observe the current value.</p>
+      </div>
+      <div class="topbar-right">
+        <p class="muted"><b>Trial <span id="obs-idx"></span> of <span id="obs-total"></span></b></p>
+      </div>
+    </div>
+
+    <div class="center" style="margin: 18px 0;">
+      <div class="muted">Current value</div>
+      <div class="value-big" id="obs-x"></div>
+      <div class="scale-wrap" aria-label="Scale from 1 to 1000">
+        <div class="scale-labels"><span>1</span><span>1000</span></div>
+        <div class="scale-bar" id="obs-scale">
+          <div class="scale-fill" id="obs-scale-fill"></div>
+          <div class="scale-actual" id="obs-scale-actual" title="Value"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="obs-forced" class="row hidden">
+      <div>
+        <label for="obs-type">Type the value to continue:</label>
+        <input id="obs-type" type="number" step="1" />
+        <p class="muted">Enter the current value seen above.</p>
+      </div>
+      <div>
+        <button id="btn-obs-continue" class="btn-primary">Continue</button>
+        <p id="obs-err" style="color:#b00; margin:8px 0 0;"></p>
+      </div>
+    </div>
+
+    <div id="obs-passive" class="center">
+      <button id="btn-obs-passive-continue" class="btn-primary">Continue</button>
+    </div>
+  </div>
+
+  <div id="screen-forecast" class="card" style="display:none;">
+    <div class="topbar">
+      <div>
+        <p class="big"><b>Forecasting phase</b></p>
+        <p class="muted">Predict the <b>next</b> value as an integer.</p>
+      </div>
+      <div class="topbar-right">
+        <p class="big"><b>Score: <span id="score">0</span></b></p>
+        <p class="muted"><b>Trial <span id="fc-idx"></span> of <span id="fc-total"></span></b></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="forecast-input">Forecast for next value:</label>
+        <input id="forecast-input" type="number" step="1" min="1" max="1000" />
+        <p class="muted">Use any whole number from 1 to 1000.</p>
+      </div>
+      <div>
+        <button id="btn-forecast-submit" class="btn-primary">Submit forecast</button>
+        <p id="fc-err" style="color:#b00; margin:8px 0 0;"></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="screen-feedback" class="card" style="display:none;">
+    <div class="topbar">
+      <div>
+        <p class="big"><b>Outcome</b></p>
+        <p class="muted">The true value is presented below, along with your forecast and associated error.</p>
+      </div>
+      <div class="topbar-right">
+        <p class="big"><b>Score: <span id="score2">0</span></b></p>
+        <p class="muted"><span class="pill">+<span id="trial-score">0</span> this trial</span></p>
+      </div>
+    </div>
+
+    <div class="center" style="margin: 18px 0;">
+      <div class="muted">Actual value</div>
+      <div class="value-big" id="actual-x"></div>
+      <div class="scale-wrap" aria-label="Scale from 1 to 1000">
+        <div class="scale-labels"><span>1</span><span>1000</span></div>
+        <div class="scale-bar" id="fb-scale">
+          <div class="scale-fill" id="fb-scale-fill"></div>
+          <div class="scale-actual" id="fb-scale-actual" title="Actual value"></div>
+          <div class="scale-forecast" id="fb-scale-forecast" title="Your forecast"></div>
+        </div>
+        <div class="scale-legend">
+          <span><span class="legend-dot" style="background:#111;"></span>Actual</span>
+          <span><span class="legend-dot" style="background:#d11;"></span>Your forecast</span>
+        </div>
+      </div>
+      <div class="muted" style="margin-top: 8px;">
+        Your forecast: <b id="your-forecast"></b> &nbsp;|&nbsp; Error: <b id="your-error"></b>
+      </div>
+    </div>
+
+    <div id="fb-forced" class="row hidden">
+      <div>
+        <label for="fb-type">Type the actual value to continue:</label>
+        <input id="fb-type" type="number" step="1" />
+      </div>
+      <div>
+        <button id="btn-fb-continue" class="btn-primary">Continue</button>
+        <p id="fb-err" style="color:#b00; margin:8px 0 0;"></p>
+      </div>
+    </div>
+    <div id="fb-passive" class="center">
+      <button id="btn-fb-passive-continue" class="btn-primary">Continue</button>
+    </div>
+  </div>
+
+  <div id="screen-distractor" class="card" style="display:none;">
+    <div class="topbar">
+      <div>
+        <p class="big"><b id="dist-title">Distractor task</b></p>
+        <p class="muted" id="dist-instr"></p>
+      </div>
+      <div class="topbar-right">
+        <p class="muted"><b>Time remaining: <span id="dist-remaining"></span>s</b></p>
+      </div>
+    </div>
+
+    <div class="center" style="margin: 18px 0;">
+      <div class="word" id="dist-word"></div>
+      <div class="btnrow">
+        <button id="dist-a" class="btn-choice"></button>
+        <button id="dist-b" class="btn-choice"></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="screen-done" class="card" style="display:none;">
+    <p class="big"><b>Finished</b></p>
+    <p>Thank you for participating.</p>
+
+    <div class="card" style="border-color:#eee; background:#fcfcfc;">
+      <p class="big" style="margin:0 0 10px;"><b>Payment summary</b></p>
+      <p style="margin:6px 0;"><b>Total score:</b> <span id="final-score"></span></p>
+      <p style="margin:6px 0;"><b>Base pay:</b> $<span id="pay-base"></span></p>
+      <p style="margin:6px 0;"><b>Bonus (from score):</b> $<span id="pay-bonus"></span></p>
+      <p style="margin:10px 0 0;" class="big"><b>Total pay:</b> $<span id="pay-total"></span></p>
+    </div>
+
+    <p style="margin-top:14px;">Your completion code:</p>
+    <p class="big"><code id="ccode"></code></p>
+
+    <div id="debug-download" class="debug-meta" style="margin-top:14px;">
+      <p class="muted">Download data:</p>
+      <button id="btn-download">Download data</button>
+    </div>
+  </div>
+
+<script>
+(function () {
+  const MU = 500;
+  const SIGMA_E = 20;               
+  const RHO_SET = [0.6, 0.9];       
+  const ENCODING_SET = ["passive", "forced"];
+  const DISTRACTOR_SET = ["animacy", "size"]; 
+  const N_OBS = 3;
+  const N_FORECAST = 3;
+  const X_MIN = 1;
+  const X_MAX = 1000;
+  const DMIN_SEC = 2;
+  const DMAX_SEC = 12;
+  const BASE_PAY_USD = 3.00;
+  const BONUS_PER_SCORE = 1 / 600;
+
+  const qs = new URLSearchParams(window.location.search);
+  const prolific_pid = qs.get("PROLIFIC_PID") || "NA";
+  const workerId = qs.get("workerId") || "NA";
+  const assignmentId = qs.get("assignmentId") || "NA";
+  const hitId = qs.get("hitId") || "NA";
+
+  const participant_id = prolific_pid !== "NA" ? prolific_pid : (workerId !== "NA" ? workerId : cryptoRandomId());
+
+  function cryptoRandomId() {
+    const a = new Uint32Array(2);
+    crypto.getRandomValues(a);
+    return "P" + a[0].toString(16) + a[1].toString(16);
+  }
+
+  function pickOne(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  const rho = (() => {
+    const v = Number(qs.get("rho"));
+    return Number.isFinite(v) && RHO_SET.includes(v) ? v : pickOne(RHO_SET);
+  })();
+  const encoding_condition = (() => {
+    const v = (qs.get("encoding") || "").toLowerCase();
+    return ENCODING_SET.includes(v) ? v : pickOne(ENCODING_SET);
+  })();
+  const distractor_task = (() => {
+    const v = (qs.get("distractor") || "").toLowerCase();
+    return DISTRACTOR_SET.includes(v) ? v : pickOne(DISTRACTOR_SET);
+  })();
+
+  console.log("Forecasting task participant:", { participant_id, rho, encoding_condition, distractor_task });
+
+  // open with ?debug=1 in the URL then shows participant ID and condition
+  const isDebug = qs.get("debug") === "1";
+  if (isDebug) {
+    const metas = document.querySelectorAll(".debug-meta");
+    metas.forEach(m => { m.style.display = "block"; });
+  }
+
+  function randn() {
+    let u = 0, v = 0;
+    while (u === 0) u = Math.random();
+    while (v === 0) v = Math.random();
+    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  }
+
+  function nextX(prev) {
+    const e = SIGMA_E * randn();
+    const raw = (1 - rho) * MU + rho * prev + e;
+    const rounded = Math.round(raw);
+    return Math.min(X_MAX, Math.max(X_MIN, rounded));
+  }
+
+  const totalNeeded = (N_OBS + N_FORECAST); 
+  const x = new Array(totalNeeded + 1);
+  x[1] = MU;
+  for (let i = 2; i <= totalNeeded; i++) x[i] = nextX(x[i - 1]);
+
+  const trials = [];        
+  const obs_trials = [];   
+  const distractor_events = []; 
+  let totalScore = 0;
+
+  function scoreOne(forecast, realization) {
+    const delta = forecast - realization;
+    const s = 100 * Math.max(0, 1 - Math.abs(delta) / SIGMA_E);
+    return s;
+  }
+
+  const el = (id) => document.getElementById(id);
+
+  el("pid").textContent = participant_id;
+  el("rho").textContent = rho.toString();
+  el("enc").textContent = encoding_condition;
+  el("dist").textContent = distractor_task;
+
+  el("obs-total").textContent = String(N_OBS);
+  el("fc-total").textContent = String(N_FORECAST);
+
+  function sampleWord() {
+    const pool = window.wordpool;
+    if (!Array.isArray(pool) || pool.length === 0) {
+      throw new Error("wordpool is missing or empty. Ensure forecasting/wordpool.js is loaded.");
+    }
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  function drawDtSec() {
+    return DMIN_SEC + Math.random() * (DMAX_SEC - DMIN_SEC);
+  }
+
+  function hideAllScreens() {
+    const ids = [
+      "screen-consent",
+      "screen-instructions",
+      "screen-observe",
+      "screen-forecast",
+      "screen-feedback",
+      "screen-distractor",
+      "screen-done"
+    ];
+    for (const id of ids) el(id).style.display = "none";
+  }
+
+  function showScreen(id) {
+    hideAllScreens();
+    el(id).style.display = "block";
+    try { window.scrollTo({ top: 0, behavior: "instant" }); } catch { window.scrollTo(0, 0); }
+  }
+
+  function waitForClick(buttonEl) {
+    return new Promise((resolve) => {
+      const handler = () => {
+        buttonEl.removeEventListener("click", handler);
+        resolve();
+      };
+      buttonEl.addEventListener("click", handler);
+    });
+  }
+
+  function clampInt(v, min, max) {
+    if (!Number.isFinite(v)) return null;
+    const r = Math.round(v);
+    if (r < min || r > max) return null;
+    return r;
+  }
+
+  function valueToPct(v) {
+    const clamped = Math.min(X_MAX, Math.max(X_MIN, v));
+    return ((clamped - X_MIN) / (X_MAX - X_MIN)) * 100;
+  }
+
+  function renderScale({ fillEl, actualEl, forecastEl }, { actual, forecast }) {
+    if (fillEl) fillEl.style.width = `${valueToPct(actual)}%`;
+    if (actualEl) actualEl.style.left = `${valueToPct(actual)}%`;
+    if (forecastEl) {
+      if (forecast == null) {
+        forecastEl.style.display = "none";
+      } else {
+        forecastEl.style.display = "block";
+        forecastEl.style.left = `${valueToPct(forecast)}%`;
+      }
+    }
+  }
+
+  async function runObservationTrial(i, x_i) {
+    showScreen("screen-observe");
+    el("obs-idx").textContent = String(i);
+    el("obs-x").textContent = String(x_i);
+    el("obs-err").textContent = "";
+    el("obs-type").value = "";
+    renderScale(
+      { fillEl: el("obs-scale-fill"), actualEl: el("obs-scale-actual") },
+      { actual: x_i }
+    );
+
+    const trialStart = performance.now();
+
+    if (encoding_condition === "forced") {
+      el("obs-forced").classList.remove("hidden");
+      el("obs-passive").classList.add("hidden");
+
+      await new Promise((resolve) => {
+        const btn = el("btn-obs-continue");
+        const handler = () => {
+          const typed = clampInt(Number(el("obs-type").value), X_MIN, X_MAX);
+          if (typed === x_i) {
+            btn.removeEventListener("click", handler);
+            resolve();
+          } else {
+            el("obs-err").textContent = "That doesn't match. Please re-enter the value exactly.";
+          }
+        };
+        btn.addEventListener("click", handler);
+      });
+    } else {
+      el("obs-forced").classList.add("hidden");
+      el("obs-passive").classList.remove("hidden");
+      await waitForClick(el("btn-obs-passive-continue"));
+    }
+
+    const trialEnd = performance.now();
+
+    obs_trials.push({
+      phase: "observation",
+      obs_index: i,
+      x_t: x_i,
+      encoding_condition,
+      started_ms: trialStart,
+      ended_ms: trialEnd,
+      timestamp: new Date().toISOString()
+    });
+
+    const dt = drawDtSec();
+    await runDistractor(dt, { phase: "observation", obs_index: i });
+  }
+
+  async function runForecastTrial(k, t) {
+    showScreen("screen-forecast");
+    el("fc-idx").textContent = String(k);
+    el("score").textContent = totalScore.toFixed(1);
+    el("fc-err").textContent = "";
+    el("forecast-input").value = "";
+    el("forecast-input").focus();
+
+    const trialStart = performance.now();
+    const forecast = await new Promise((resolve) => {
+      const btn = el("btn-forecast-submit");
+      const handler = () => {
+        const f = clampInt(Number(el("forecast-input").value), X_MIN, X_MAX);
+        if (f == null) {
+          el("fc-err").textContent = "Please enter a whole number from 1 to 1000.";
+          return;
+        }
+        btn.removeEventListener("click", handler);
+        resolve(f);
+      };
+      btn.addEventListener("click", handler);
+    });
+    const forecastEnd = performance.now();
+
+    const actual = x[t + 1];
+    const s = scoreOne(forecast, actual);
+    totalScore += s;
+
+    showScreen("screen-feedback");
+    el("score2").textContent = totalScore.toFixed(1);
+    el("trial-score").textContent = Math.round(s).toString();
+    el("actual-x").textContent = String(actual);
+    el("your-forecast").textContent = String(forecast);
+    el("your-error").textContent = String(forecast - actual);
+    el("fb-err").textContent = "";
+    el("fb-type").value = "";
+    renderScale(
+      { fillEl: el("fb-scale-fill"), actualEl: el("fb-scale-actual"), forecastEl: el("fb-scale-forecast") },
+      { actual, forecast }
+    );
+
+    const fbStart = performance.now();
+    if (encoding_condition === "forced") {
+      el("fb-forced").classList.remove("hidden");
+      el("fb-passive").classList.add("hidden");
+      await new Promise((resolve) => {
+        const btn = el("btn-fb-continue");
+        const handler = () => {
+          const typed = clampInt(Number(el("fb-type").value), X_MIN, X_MAX);
+          if (typed === actual) {
+            btn.removeEventListener("click", handler);
+            resolve();
+          } else {
+            el("fb-err").textContent = "That doesn't match. Please type the actual value exactly.";
+          }
+        };
+        btn.addEventListener("click", handler);
+      });
+    } else {
+      el("fb-forced").classList.add("hidden");
+      el("fb-passive").classList.remove("hidden");
+      await waitForClick(el("btn-fb-passive-continue"));
+    }
+    const fbEnd = performance.now();
+
+    trials.push({
+      phase: "forecast",
+      forecast_index: k,
+      t_index: t,
+      forecast_t1: forecast,
+      realized_t1: actual,
+      score_t1: s,
+      rho,
+      mu: MU,
+      sigma_e: SIGMA_E,
+      encoding_condition,
+      distractor_task,
+      forecast_started_ms: trialStart,
+      forecast_submitted_ms: forecastEnd,
+      feedback_started_ms: fbStart,
+      feedback_ended_ms: fbEnd,
+      timestamp: new Date().toISOString()
+    });
+
+    const dt = drawDtSec();
+    await runDistractor(dt, { phase: "forecast", forecast_index: k, t_index: t });
+  }
+
+  async function runDistractor(durationSec, meta) {
+    showScreen("screen-distractor");
+    const startIso = new Date().toISOString();
+    const startedMs = performance.now();
+    const endsAt = startedMs + durationSec * 1000;
+
+    const isAnimacy = distractor_task === "animacy";
+    el("dist-title").textContent = isAnimacy ? "Animacy judgment" : "Size judgment";
+    const prompt = isAnimacy ? "Does this word refer to something living or nonliving?" : "Will this item fit in a shoebox?";
+    const aLabel = isAnimacy ? "Living" : "Yes";
+    const bLabel = isAnimacy ? "Nonliving" : "No";
+    el("dist-instr").textContent = prompt;
+    el("dist-a").textContent = aLabel;
+    el("dist-b").textContent = bLabel;
+
+    let currentWord = null;
+    let wordShownAt = null;
+    let responseHandlerAttached = false;
+
+    function setRemaining() {
+      const now = performance.now();
+      const rem = Math.max(0, (endsAt - now) / 1000);
+      el("dist-remaining").textContent = rem.toFixed(1);
+      return rem;
+    }
+
+    function nextWord() {
+      currentWord = sampleWord();
+      el("dist-word").textContent = currentWord;
+      wordShownAt = performance.now();
+    }
+
+    function record(choice) {
+      const now = performance.now();
+      const rt = wordShownAt != null ? (now - wordShownAt) : null;
+      distractor_events.push({
+        ...meta,
+        distractor_task,
+        prompt,
+        word: currentWord,
+        choice,
+        rt_ms: rt,
+        shown_at_ms: wordShownAt,
+        responded_at_ms: now,
+        started_at_iso: startIso
+      });
+    }
+
+    nextWord();
+    setRemaining();
+
+    await new Promise((resolve) => {
+      const tick = () => {
+        const rem = setRemaining();
+        if (rem <= 0) {
+          cleanup();
+          resolve();
+        } else {
+          requestAnimationFrame(tick);
+        }
+      };
+
+      const onA = () => { record("A"); nextWord(); };
+      const onB = () => { record("B"); nextWord(); };
+
+      function cleanup() {
+        if (responseHandlerAttached) {
+          el("dist-a").removeEventListener("click", onA);
+          el("dist-b").removeEventListener("click", onB);
+          responseHandlerAttached = false;
+        }
+      }
+
+      el("dist-a").addEventListener("click", onA);
+      el("dist-b").addEventListener("click", onB);
+      responseHandlerAttached = true;
+
+      requestAnimationFrame(tick);
+    });
+
+    const endedMs = performance.now();
+    distractor_events.push({
+      ...meta,
+      distractor_task,
+      interval_event: true,
+      dt_sec: durationSec,
+      started_ms: startedMs,
+      ended_ms: endedMs,
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  el("btn-begin").onclick = () => {
+    if (!el("consent").checked) return alert("Please consent to continue.");
+    showScreen("screen-instructions");
+  };
+
+  el("btn-start-task").onclick = async () => {
+    try {
+      for (let i = 1; i <= N_OBS; i++) {
+        await runObservationTrial(i, x[i]);
+      }
+      for (let k = 1; k <= N_FORECAST; k++) {
+        const t = N_OBS + (k - 1);
+        await runForecastTrial(k, t);
+      }
+
+      finish();
+    } catch (e) {
+      console.error(e);
+      alert("An unexpected error occurred. Please refresh the page and try again.");
+    }
+  };
+
+  function finish() {
+    showScreen("screen-done");
+
+    const bonusUsd = totalScore * BONUS_PER_SCORE;
+    const totalPayUsd = BASE_PAY_USD + bonusUsd;
+    el("final-score").textContent = totalScore.toFixed(1);
+    el("pay-base").textContent = BASE_PAY_USD.toFixed(2);
+    el("pay-bonus").textContent = bonusUsd.toFixed(2);
+    el("pay-total").textContent = totalPayUsd.toFixed(2);
+
+    const payload = {
+      participant_id,
+      prolific_pid,
+      workerId,
+      assignmentId,
+      hitId,
+      condition_rho: rho,
+      encoding_condition,
+      distractor_task,
+      mu: MU,
+      sigma_e: SIGMA_E,
+      n_observation: N_OBS,
+      n_forecast: N_FORECAST,
+      distractor_dmin_sec: DMIN_SEC,
+      distractor_dmax_sec: DMAX_SEC,
+      total_score: totalScore,
+      base_pay_usd: BASE_PAY_USD,
+      bonus_per_score: BONUS_PER_SCORE,
+      bonus_usd: bonusUsd,
+      total_pay_usd: totalPayUsd,
+      observation_trials: obs_trials,
+      forecast_trials: trials,
+      distractor_events
+    };
+
+    const ccode = makeCompletionCode(payload);
+    el("ccode").textContent = ccode;
+
+    const debugBox = el("debug-download");
+    if (isDebug) {
+      debugBox.style.display = "block";
+      el("btn-download").onclick = () => {
+        const blob = new Blob([JSON.stringify({ ...payload, completion_code: ccode }, null, 2)], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `forecast_task_${participant_id}.json`;
+        a.click();
+      };
+    } else {
+      debugBox.style.display = "none";
+    }
+  }
+
+  function makeCompletionCode(payload) {
+    const base = `${payload.participant_id}|${payload.condition_rho}|${payload.total_score.toFixed(2)}|${Date.now()}`;
+    let h = 2166136261;
+    for (let i = 0; i < base.length; i++) {
+      h ^= base.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return "CC" + (h >>> 0).toString(16).toUpperCase().padStart(8, "0");
+  }
+})();
+</script>
+</body>
+</html>
