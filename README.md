@@ -2,7 +2,7 @@
 
 Forecasting Task Link:
 
-https://kumarnik1.github.io/Overreaction/
+https://pennmem.github.io/Overreaction/
 
 ## Files: 
 
