@@ -1,0 +1,1035 @@
+{
+  "completion": {
+    "code": "CCAE716BF1",
+    "ended_wall_iso": "2026-04-16T21:44:28.544Z"
+  },
+  "participant": {
+    "participant_id": "P1044fa7822ef1d81"
+  },
+  "design": {
+    "rho": 0.6,
+    "typing_mode": "passive",
+    "distractor_task": "animacy",
+    "time_series": {
+      "mu": 500,
+      "sigma_e": 20,
+      "bounds": {
+        "min": 1,
+        "max": 1000
+      }
+    },
+    "trial_counts": {
+      "observation": 3,
+      "forecast": 3
+    },
+    "distractor_block_duration_sec": {
+      "min": 2,
+      "max": 12
+    }
+  },
+  "payment": {
+    "total_score": 105,
+    "base_pay_usd": 3,
+    "bonus_per_score": 0.0016666666666666668,
+    "bonus_usd": 0.17500000000000002,
+    "total_pay_usd": 3.175
+  },
+  "series": {
+    "realized_values": [
+      500,
+      518,
+      508,
+      492,
+      494,
+      485
+    ],
+    "index_note": "realized_values[j] is x[j+1] from the generator (1-based). Observation trial i shows x[i]. Forecast k predicts x[t+1] with t = n_observation + k - 1."
+  },
+  "trials": {
+    "observations": [
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "x_t": 500,
+        "obs_encoding": "passive",
+        "started_ms": 2371.5,
+        "ended_ms": 4012.899999976158,
+        "timestamp": "2026-04-16T21:43:36.195Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "x_t": 518,
+        "obs_encoding": "passive",
+        "started_ms": 10302.600000023842,
+        "ended_ms": 12477.200000047684,
+        "timestamp": "2026-04-16T21:43:44.659Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "x_t": 508,
+        "obs_encoding": "passive",
+        "started_ms": 18903,
+        "ended_ms": 20387.799999952316,
+        "timestamp": "2026-04-16T21:43:52.570Z"
+      }
+    ],
+    "forecasts": [
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "forecast_t1": 515,
+        "realized_t1": 492,
+        "score_t1": 0,
+        "rho": 0.6,
+        "mu": 500,
+        "sigma_e": 20,
+        "encoding_condition": "passive",
+        "distractor_task": "animacy",
+        "forecast_started_ms": 25565.899999976158,
+        "forecast_submitted_ms": 27548.299999952316,
+        "feedback_started_ms": 27550.100000023842,
+        "feedback_ended_ms": 29008.5,
+        "timestamp": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "forecast_t1": 485,
+        "realized_t1": 494,
+        "score_t1": 55.00000000000001,
+        "rho": 0.6,
+        "mu": 500,
+        "sigma_e": 20,
+        "encoding_condition": "passive",
+        "distractor_task": "animacy",
+        "forecast_started_ms": 40674.5,
+        "forecast_submitted_ms": 41899.200000047684,
+        "feedback_started_ms": 41900.89999997616,
+        "feedback_ended_ms": 43500.60000002384,
+        "timestamp": "2026-04-16T21:44:15.683Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 3,
+        "t_index": 5,
+        "forecast_t1": 475,
+        "realized_t1": 485,
+        "score_t1": 50,
+        "rho": 0.6,
+        "mu": 500,
+        "sigma_e": 20,
+        "encoding_condition": "passive",
+        "distractor_task": "animacy",
+        "forecast_started_ms": 48179.299999952316,
+        "forecast_submitted_ms": 49821.60000002384,
+        "feedback_started_ms": 49822.60000002384,
+        "feedback_ended_ms": 52020.700000047684,
+        "timestamp": "2026-04-16T21:44:24.203Z"
+      }
+    ]
+  },
+  "distractor": {
+    "events": [
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "LAUNDRY",
+        "choice": "A",
+        "rt_ms": 2479.3000000715256,
+        "shown_at_ms": 4014.399999976158,
+        "responded_at_ms": 6493.700000047684,
+        "started_at_iso": "2026-04-16T21:43:36.196Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "RING",
+        "choice": "B",
+        "rt_ms": 1204.3000000715256,
+        "shown_at_ms": 6493.899999976158,
+        "responded_at_ms": 7698.200000047684,
+        "started_at_iso": "2026-04-16T21:43:36.196Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "WIFE",
+        "choice": "A",
+        "rt_ms": 750.5,
+        "shown_at_ms": 7698.299999952316,
+        "responded_at_ms": 8448.799999952316,
+        "started_at_iso": "2026-04-16T21:43:36.196Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "SHIRT",
+        "choice": "B",
+        "rt_ms": 838.6000000238419,
+        "shown_at_ms": 8448.899999976158,
+        "responded_at_ms": 9287.5,
+        "started_at_iso": "2026-04-16T21:43:36.196Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "distractor_task": "animacy",
+        "interval_event": true,
+        "dt_sec": 6.279455377891051,
+        "started_ms": 4014.2000000476837,
+        "ended_ms": 10301.200000047684,
+        "timestamp": "2026-04-16T21:43:42.483Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "KEEPER",
+        "choice": "B",
+        "rt_ms": 1523.6000000238419,
+        "shown_at_ms": 12478.600000023842,
+        "responded_at_ms": 14002.200000047684,
+        "started_at_iso": "2026-04-16T21:43:44.660Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "NIGHTGOWN",
+        "choice": "B",
+        "rt_ms": 938.7000000476837,
+        "shown_at_ms": 14002.299999952316,
+        "responded_at_ms": 14941,
+        "started_at_iso": "2026-04-16T21:43:44.660Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "BOSS",
+        "choice": "A",
+        "rt_ms": 622.8999999761581,
+        "shown_at_ms": 14941.200000047684,
+        "responded_at_ms": 15564.100000023842,
+        "started_at_iso": "2026-04-16T21:43:44.660Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "LOCK",
+        "choice": "B",
+        "rt_ms": 641.1999999284744,
+        "shown_at_ms": 15564.200000047684,
+        "responded_at_ms": 16205.399999976158,
+        "started_at_iso": "2026-04-16T21:43:44.660Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "BLOCKADE",
+        "choice": "B",
+        "rt_ms": 767.5,
+        "shown_at_ms": 16205.399999976158,
+        "responded_at_ms": 16972.899999976158,
+        "started_at_iso": "2026-04-16T21:43:44.660Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "HARP",
+        "choice": "B",
+        "rt_ms": 808.5,
+        "shown_at_ms": 16973.100000023842,
+        "responded_at_ms": 17781.600000023842,
+        "started_at_iso": "2026-04-16T21:43:44.660Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "PIZZA",
+        "choice": "B",
+        "rt_ms": 620.5,
+        "shown_at_ms": 17781.700000047684,
+        "responded_at_ms": 18402.200000047684,
+        "started_at_iso": "2026-04-16T21:43:44.660Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "animacy",
+        "interval_event": true,
+        "dt_sec": 6.42109020533508,
+        "started_ms": 12478.5,
+        "ended_ms": 18900.899999976158,
+        "timestamp": "2026-04-16T21:43:51.083Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "STAFF",
+        "choice": "A",
+        "rt_ms": 918.3999999761581,
+        "shown_at_ms": 20389.200000047684,
+        "responded_at_ms": 21307.600000023842,
+        "started_at_iso": "2026-04-16T21:43:52.571Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "CRICKET",
+        "choice": "A",
+        "rt_ms": 941.6000000238419,
+        "shown_at_ms": 21307.799999952316,
+        "responded_at_ms": 22249.399999976158,
+        "started_at_iso": "2026-04-16T21:43:52.571Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "TURKEY",
+        "choice": "A",
+        "rt_ms": 844.3999999761581,
+        "shown_at_ms": 22249.5,
+        "responded_at_ms": 23093.899999976158,
+        "started_at_iso": "2026-04-16T21:43:52.571Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "animacy",
+        "interval_event": true,
+        "dt_sec": 3.2370256023025608,
+        "started_ms": 20389,
+        "ended_ms": 23635.100000023842,
+        "timestamp": "2026-04-16T21:43:55.817Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "SWITCH",
+        "choice": "B",
+        "rt_ms": 1228.5,
+        "shown_at_ms": 29009.399999976158,
+        "responded_at_ms": 30237.899999976158,
+        "started_at_iso": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "BELL",
+        "choice": "B",
+        "rt_ms": 1148.7000000476837,
+        "shown_at_ms": 30237.899999976158,
+        "responded_at_ms": 31386.600000023842,
+        "started_at_iso": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "ROBIN",
+        "choice": "A",
+        "rt_ms": 1218.7999999523163,
+        "shown_at_ms": 31386.700000047684,
+        "responded_at_ms": 32605.5,
+        "started_at_iso": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "SATURN",
+        "choice": "B",
+        "rt_ms": 680.8000000715256,
+        "shown_at_ms": 32605.799999952316,
+        "responded_at_ms": 33286.60000002384,
+        "started_at_iso": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "STORE",
+        "choice": "B",
+        "rt_ms": 710.9000000953674,
+        "shown_at_ms": 33286.799999952316,
+        "responded_at_ms": 33997.700000047684,
+        "started_at_iso": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "CLOUD",
+        "choice": "B",
+        "rt_ms": 1083.6000000238419,
+        "shown_at_ms": 33997.89999997616,
+        "responded_at_ms": 35081.5,
+        "started_at_iso": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "MARBLE",
+        "choice": "B",
+        "rt_ms": 767.6000000238419,
+        "shown_at_ms": 35081.60000002384,
+        "responded_at_ms": 35849.200000047684,
+        "started_at_iso": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "DETERGENT",
+        "choice": "B",
+        "rt_ms": 681.7000000476837,
+        "shown_at_ms": 35849.299999952316,
+        "responded_at_ms": 36531,
+        "started_at_iso": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "FACE",
+        "choice": "A",
+        "rt_ms": 1257.7999999523163,
+        "shown_at_ms": 36531,
+        "responded_at_ms": 37788.799999952316,
+        "started_at_iso": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "CONCERT",
+        "choice": "B",
+        "rt_ms": 876.7000000476837,
+        "shown_at_ms": 37788.89999997616,
+        "responded_at_ms": 38665.60000002384,
+        "started_at_iso": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "ADOLESCENT",
+        "choice": "A",
+        "rt_ms": 747.8999999761581,
+        "shown_at_ms": 38666.10000002384,
+        "responded_at_ms": 39414,
+        "started_at_iso": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "animacy",
+        "interval_event": true,
+        "dt_sec": 10.409212125197435,
+        "started_ms": 29009.299999952316,
+        "ended_ms": 39419,
+        "timestamp": "2026-04-16T21:44:11.601Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "CABOOSE",
+        "choice": "B",
+        "rt_ms": 1364,
+        "shown_at_ms": 43501.89999997616,
+        "responded_at_ms": 44865.89999997616,
+        "started_at_iso": "2026-04-16T21:44:15.684Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "SLOPE",
+        "choice": "B",
+        "rt_ms": 848.3000000715256,
+        "shown_at_ms": 44865.89999997616,
+        "responded_at_ms": 45714.200000047684,
+        "started_at_iso": "2026-04-16T21:44:15.684Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "IDOL",
+        "choice": "A",
+        "rt_ms": 846.3000000715256,
+        "shown_at_ms": 45714.299999952316,
+        "responded_at_ms": 46560.60000002384,
+        "started_at_iso": "2026-04-16T21:44:15.684Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "distractor_task": "animacy",
+        "interval_event": true,
+        "dt_sec": 3.6337244441024934,
+        "started_ms": 43501.799999952316,
+        "ended_ms": 47143.39999997616,
+        "timestamp": "2026-04-16T21:44:19.326Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 3,
+        "t_index": 5,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "SHUTTER",
+        "choice": "B",
+        "rt_ms": 1688.5,
+        "shown_at_ms": 52021.5,
+        "responded_at_ms": 53710,
+        "started_at_iso": "2026-04-16T21:44:24.204Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 3,
+        "t_index": 5,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "ALMANAC",
+        "choice": "B",
+        "rt_ms": 759.2000000476837,
+        "shown_at_ms": 53710.5,
+        "responded_at_ms": 54469.700000047684,
+        "started_at_iso": "2026-04-16T21:44:24.204Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 3,
+        "t_index": 5,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "LOAF",
+        "choice": "B",
+        "rt_ms": 668.2000000476837,
+        "shown_at_ms": 54469.799999952316,
+        "responded_at_ms": 55138,
+        "started_at_iso": "2026-04-16T21:44:24.204Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 3,
+        "t_index": 5,
+        "distractor_task": "animacy",
+        "prompt": "Does this word refer to something living or nonliving?",
+        "word": "LIME",
+        "choice": "B",
+        "rt_ms": 684.5,
+        "shown_at_ms": 55138.200000047684,
+        "responded_at_ms": 55822.700000047684,
+        "started_at_iso": "2026-04-16T21:44:24.204Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 3,
+        "t_index": 5,
+        "distractor_task": "animacy",
+        "interval_event": true,
+        "dt_sec": 4.333532055367721,
+        "started_ms": 52021.39999997616,
+        "ended_ms": 56360.200000047684,
+        "timestamp": "2026-04-16T21:44:28.543Z"
+      }
+    ],
+    "event_note": "Most rows are word judgments (word, choice, rt_ms). Rows with interval_event true end a timed distractor block."
+  },
+  "diagnostics": {
+    "session_log": [
+      {
+        "type": "page_loaded",
+        "wall_iso": "2026-04-16T21:43:32.525Z",
+        "perf_ms": 343.7000000476837,
+        "url": "https://pennmem.github.io/Overreaction/?debug=1"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:43:34.008Z",
+        "perf_ms": 1826.2000000476837,
+        "screen": "screen-consent",
+        "duration_ms": 1482.3999999761581
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:43:34.008Z",
+        "perf_ms": 1826.3999999761581,
+        "screen": "screen-instructions"
+      },
+      {
+        "type": "task_started",
+        "wall_iso": "2026-04-16T21:43:34.549Z",
+        "perf_ms": 2367.5
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:43:34.549Z",
+        "perf_ms": 2367.600000023842,
+        "screen": "screen-instructions",
+        "duration_ms": 541.5
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:43:34.549Z",
+        "perf_ms": 2367.600000023842,
+        "screen": "screen-observe"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:43:36.195Z",
+        "perf_ms": 4013,
+        "screen": "screen-observe",
+        "duration_ms": 1645.3999999761581
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:43:36.195Z",
+        "perf_ms": 4013.100000023842,
+        "screen": "screen-distractor"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:43:42.483Z",
+        "perf_ms": 10301.299999952316,
+        "screen": "screen-distractor",
+        "duration_ms": 6288.299999952316
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:43:42.483Z",
+        "perf_ms": 10301.399999976158,
+        "screen": "screen-observe"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:43:44.659Z",
+        "perf_ms": 12477.399999976158,
+        "screen": "screen-observe",
+        "duration_ms": 2176.100000023842
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:43:44.659Z",
+        "perf_ms": 12477.399999976158,
+        "screen": "screen-distractor"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:43:51.083Z",
+        "perf_ms": 18901,
+        "screen": "screen-distractor",
+        "duration_ms": 6423.600000023842
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:43:51.083Z",
+        "perf_ms": 18901.200000047684,
+        "screen": "screen-observe"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:43:52.570Z",
+        "perf_ms": 20387.899999976158,
+        "screen": "screen-observe",
+        "duration_ms": 1486.8999999761581
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:43:52.570Z",
+        "perf_ms": 20388,
+        "screen": "screen-distractor"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:43:55.817Z",
+        "perf_ms": 23635.200000047684,
+        "screen": "screen-distractor",
+        "duration_ms": 3247.3000000715256
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:43:55.817Z",
+        "perf_ms": 23635.299999952316,
+        "screen": "screen-forecast-intro"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:43:57.746Z",
+        "perf_ms": 25564,
+        "screen": "screen-forecast-intro",
+        "duration_ms": 1928.6999999284744
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:43:57.746Z",
+        "perf_ms": 25564.399999976158,
+        "screen": "screen-forecast"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:43:59.730Z",
+        "perf_ms": 27548.399999976158,
+        "screen": "screen-forecast",
+        "duration_ms": 1984.3999999761581
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:43:59.731Z",
+        "perf_ms": 27548.399999976158,
+        "screen": "screen-feedback"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:44:01.191Z",
+        "perf_ms": 29008.600000023842,
+        "screen": "screen-feedback",
+        "duration_ms": 1460.2000000476837
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:44:01.191Z",
+        "perf_ms": 29008.700000047684,
+        "screen": "screen-distractor"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:44:11.601Z",
+        "perf_ms": 39419.10000002384,
+        "screen": "screen-distractor",
+        "duration_ms": 10410.600000023842
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:44:11.601Z",
+        "perf_ms": 39419.200000047684,
+        "screen": "screen-forecast-intro"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:44:12.855Z",
+        "perf_ms": 40672.89999997616,
+        "screen": "screen-forecast-intro",
+        "duration_ms": 1253.6999999284744
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:44:12.855Z",
+        "perf_ms": 40673,
+        "screen": "screen-forecast"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:44:14.082Z",
+        "perf_ms": 41899.200000047684,
+        "screen": "screen-forecast",
+        "duration_ms": 1226.4000000953674
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:44:14.082Z",
+        "perf_ms": 41899.39999997616,
+        "screen": "screen-feedback"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:44:15.683Z",
+        "perf_ms": 43500.799999952316,
+        "screen": "screen-feedback",
+        "duration_ms": 1601.5
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:44:15.683Z",
+        "perf_ms": 43500.799999952316,
+        "screen": "screen-distractor"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:44:19.326Z",
+        "perf_ms": 47143.60000002384,
+        "screen": "screen-distractor",
+        "duration_ms": 3642.899999976158
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:44:19.326Z",
+        "perf_ms": 47143.700000047684,
+        "screen": "screen-forecast-intro"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:44:20.360Z",
+        "perf_ms": 48177.60000002384,
+        "screen": "screen-forecast-intro",
+        "duration_ms": 1034
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:44:20.360Z",
+        "perf_ms": 48177.799999952316,
+        "screen": "screen-forecast"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:44:22.004Z",
+        "perf_ms": 49821.60000002384,
+        "screen": "screen-forecast",
+        "duration_ms": 1644
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:44:22.004Z",
+        "perf_ms": 49821.700000047684,
+        "screen": "screen-feedback"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:44:24.203Z",
+        "perf_ms": 52020.700000047684,
+        "screen": "screen-feedback",
+        "duration_ms": 2199.100000023842
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:44:24.203Z",
+        "perf_ms": 52020.700000047684,
+        "screen": "screen-distractor"
+      },
+      {
+        "type": "task_finished",
+        "wall_iso": "2026-04-16T21:44:28.543Z",
+        "perf_ms": 56360.39999997616,
+        "total_score": 105
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:44:28.543Z",
+        "perf_ms": 56360.39999997616,
+        "screen": "screen-distractor",
+        "duration_ms": 4339.699999928474
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:44:28.543Z",
+        "perf_ms": 56360.39999997616,
+        "screen": "screen-done"
+      }
+    ],
+    "screen_timings": [
+      {
+        "screen": "screen-consent",
+        "entered_perf_ms": 343.7000000476837,
+        "exited_perf_ms": 1826.1000000238419,
+        "duration_ms": 1482.3999999761581,
+        "entered_wall_iso": "2026-04-16T21:43:32.525Z"
+      },
+      {
+        "screen": "screen-instructions",
+        "entered_perf_ms": 1826.1000000238419,
+        "exited_perf_ms": 2367.600000023842,
+        "duration_ms": 541.5,
+        "entered_wall_iso": "2026-04-16T21:43:34.008Z"
+      },
+      {
+        "screen": "screen-observe",
+        "entered_perf_ms": 2367.600000023842,
+        "exited_perf_ms": 4013,
+        "duration_ms": 1645.3999999761581,
+        "entered_wall_iso": "2026-04-16T21:43:34.549Z"
+      },
+      {
+        "screen": "screen-distractor",
+        "entered_perf_ms": 4013,
+        "exited_perf_ms": 10301.299999952316,
+        "duration_ms": 6288.299999952316,
+        "entered_wall_iso": "2026-04-16T21:43:36.195Z"
+      },
+      {
+        "screen": "screen-observe",
+        "entered_perf_ms": 10301.299999952316,
+        "exited_perf_ms": 12477.399999976158,
+        "duration_ms": 2176.100000023842,
+        "entered_wall_iso": "2026-04-16T21:43:42.483Z"
+      },
+      {
+        "screen": "screen-distractor",
+        "entered_perf_ms": 12477.399999976158,
+        "exited_perf_ms": 18901,
+        "duration_ms": 6423.600000023842,
+        "entered_wall_iso": "2026-04-16T21:43:44.659Z"
+      },
+      {
+        "screen": "screen-observe",
+        "entered_perf_ms": 18901,
+        "exited_perf_ms": 20387.899999976158,
+        "duration_ms": 1486.8999999761581,
+        "entered_wall_iso": "2026-04-16T21:43:51.083Z"
+      },
+      {
+        "screen": "screen-distractor",
+        "entered_perf_ms": 20387.899999976158,
+        "exited_perf_ms": 23635.200000047684,
+        "duration_ms": 3247.3000000715256,
+        "entered_wall_iso": "2026-04-16T21:43:52.570Z"
+      },
+      {
+        "screen": "screen-forecast-intro",
+        "entered_perf_ms": 23635.200000047684,
+        "exited_perf_ms": 25563.899999976158,
+        "duration_ms": 1928.6999999284744,
+        "entered_wall_iso": "2026-04-16T21:43:55.817Z"
+      },
+      {
+        "screen": "screen-forecast",
+        "entered_perf_ms": 25563.899999976158,
+        "exited_perf_ms": 27548.299999952316,
+        "duration_ms": 1984.3999999761581,
+        "entered_wall_iso": "2026-04-16T21:43:57.746Z"
+      },
+      {
+        "screen": "screen-feedback",
+        "entered_perf_ms": 27548.299999952316,
+        "exited_perf_ms": 29008.5,
+        "duration_ms": 1460.2000000476837,
+        "entered_wall_iso": "2026-04-16T21:43:59.730Z"
+      },
+      {
+        "screen": "screen-distractor",
+        "entered_perf_ms": 29008.5,
+        "exited_perf_ms": 39419.10000002384,
+        "duration_ms": 10410.600000023842,
+        "entered_wall_iso": "2026-04-16T21:44:01.191Z"
+      },
+      {
+        "screen": "screen-forecast-intro",
+        "entered_perf_ms": 39419.10000002384,
+        "exited_perf_ms": 40672.799999952316,
+        "duration_ms": 1253.6999999284744,
+        "entered_wall_iso": "2026-04-16T21:44:11.601Z"
+      },
+      {
+        "screen": "screen-forecast",
+        "entered_perf_ms": 40672.799999952316,
+        "exited_perf_ms": 41899.200000047684,
+        "duration_ms": 1226.4000000953674,
+        "entered_wall_iso": "2026-04-16T21:44:12.855Z"
+      },
+      {
+        "screen": "screen-feedback",
+        "entered_perf_ms": 41899.200000047684,
+        "exited_perf_ms": 43500.700000047684,
+        "duration_ms": 1601.5,
+        "entered_wall_iso": "2026-04-16T21:44:14.082Z"
+      },
+      {
+        "screen": "screen-distractor",
+        "entered_perf_ms": 43500.700000047684,
+        "exited_perf_ms": 47143.60000002384,
+        "duration_ms": 3642.899999976158,
+        "entered_wall_iso": "2026-04-16T21:44:15.683Z"
+      },
+      {
+        "screen": "screen-forecast-intro",
+        "entered_perf_ms": 47143.60000002384,
+        "exited_perf_ms": 48177.60000002384,
+        "duration_ms": 1034,
+        "entered_wall_iso": "2026-04-16T21:44:19.326Z"
+      },
+      {
+        "screen": "screen-forecast",
+        "entered_perf_ms": 48177.60000002384,
+        "exited_perf_ms": 49821.60000002384,
+        "duration_ms": 1644,
+        "entered_wall_iso": "2026-04-16T21:44:20.360Z"
+      },
+      {
+        "screen": "screen-feedback",
+        "entered_perf_ms": 49821.60000002384,
+        "exited_perf_ms": 52020.700000047684,
+        "duration_ms": 2199.100000023842,
+        "entered_wall_iso": "2026-04-16T21:44:22.004Z"
+      },
+      {
+        "screen": "screen-distractor",
+        "entered_perf_ms": 52020.700000047684,
+        "exited_perf_ms": 56360.39999997616,
+        "duration_ms": 4339.699999928474,
+        "entered_wall_iso": "2026-04-16T21:44:24.203Z"
+      }
+    ],
+    "client": {
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "viewport": {
+        "width": 1485,
+        "height": 977
+      }
+    }
+  }
+}

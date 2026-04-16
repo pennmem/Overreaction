@@ -898,15 +898,21 @@
 
   const LS_SESSION_PREFIX = "forecast_exp_session_v1";
 
-  function downloadSessionJson(obj) {
-    const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
+  function downloadSessionFilename(obj) {
+    const code = obj && obj.completion && obj.completion.code;
+    if (code && /^[A-Za-z0-9]+$/.test(code)) return `${code}.json`;
     const pid =
       obj && obj.participant && obj.participant.participant_id
         ? obj.participant.participant_id
         : participant_id;
-    a.download = `forecast_task_${pid}.json`;
+    return `${String(pid).replace(/[^\w.-]/g, "_").slice(0, 24)}.json`;
+  }
+
+  function downloadSessionJson(obj) {
+    const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = downloadSessionFilename(obj);
     a.click();
     URL.revokeObjectURL(a.href);
   }
