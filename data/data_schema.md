@@ -8,7 +8,7 @@ Save with **Download data** after finishing the task (`?debug=1` in the URL). On
 - **`participant`** — `participant_id` always. If the link included MTurk-style parameters, you may also see `mturk_assignment_id` and/or `mturk_hit_id` (worker id is already `participant_id`).
 - **`design`** — Everything held fixed for the session:
   - `rho` — AR(1) persistence.
-  - `typing_mode` — `forced` or `passive`; same for observation trials and forecast-feedback screens (type the exact number vs continue with Enter).
+  - `typing_mode` — `forced` or `passive`, same everywhere below. **`forced`:** after each observation value and after each revealed forecast outcome, they must type that number exactly. **`passive`:** those screens only need Enter (no typing the values).
   - `distractor_task` — e.g. `animacy` or `size`.
   - `time_series` — `mu`, `sigma_e`, `bounds.min`, `bounds.max` for the simulated series.
   - `trial_counts` — `observation`, `forecast` (how many of each).

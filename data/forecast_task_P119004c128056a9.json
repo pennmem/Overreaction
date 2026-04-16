@@ -1,0 +1,1131 @@
+{
+  "completion": {
+    "code": "CCD26812C0",
+    "ended_wall_iso": "2026-04-16T21:07:36.239Z"
+  },
+  "participant": {
+    "participant_id": "P119004c128056a9"
+  },
+  "design": {
+    "rho": 0.9,
+    "typing_mode": "forced",
+    "distractor_task": "size",
+    "time_series": {
+      "mu": 500,
+      "sigma_e": 20,
+      "bounds": {
+        "min": 1,
+        "max": 1000
+      }
+    },
+    "trial_counts": {
+      "observation": 3,
+      "forecast": 3
+    },
+    "distractor_block_duration_sec": {
+      "min": 2,
+      "max": 12
+    }
+  },
+  "payment": {
+    "total_score": 44.99999999999999,
+    "base_pay_usd": 3,
+    "bonus_per_score": 0.0016666666666666668,
+    "bonus_usd": 0.075,
+    "total_pay_usd": 3.075
+  },
+  "series": {
+    "realized_values": [
+      500,
+      499,
+      487,
+      459,
+      495,
+      509
+    ],
+    "index_note": "realized_values[j] is x[j+1] from the generator (1-based). Observation trial i shows x[i]. Forecast k predicts x[t+1] with t = n_observation + k - 1."
+  },
+  "trials": {
+    "observations": [
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "x_t": 500,
+        "obs_encoding": "forced",
+        "started_ms": 48114.60000002384,
+        "ended_ms": 50860.60000002384,
+        "timestamp": "2026-04-16T21:06:03.302Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "x_t": 499,
+        "obs_encoding": "forced",
+        "started_ms": 58362.5,
+        "ended_ms": 60915.10000002384,
+        "timestamp": "2026-04-16T21:06:13.357Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "x_t": 487,
+        "obs_encoding": "forced",
+        "started_ms": 68837.10000002384,
+        "ended_ms": 72295.29999995232,
+        "timestamp": "2026-04-16T21:06:24.737Z"
+      }
+    ],
+    "forecasts": [
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "forecast_t1": 485,
+        "realized_t1": 459,
+        "score_t1": 0,
+        "rho": 0.9,
+        "mu": 500,
+        "sigma_e": 20,
+        "encoding_condition": "forced",
+        "distractor_task": "size",
+        "forecast_started_ms": 84682.60000002384,
+        "forecast_submitted_ms": 89638.39999997616,
+        "feedback_started_ms": 89639.5,
+        "feedback_ended_ms": 94648.60000002384,
+        "timestamp": "2026-04-16T21:06:47.091Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "forecast_t1": 465,
+        "realized_t1": 495,
+        "score_t1": 0,
+        "rho": 0.9,
+        "mu": 500,
+        "sigma_e": 20,
+        "encoding_condition": "forced",
+        "distractor_task": "size",
+        "forecast_started_ms": 107957,
+        "forecast_submitted_ms": 111448.5,
+        "feedback_started_ms": 111450.89999997616,
+        "feedback_ended_ms": 117216.69999992847,
+        "timestamp": "2026-04-16T21:07:09.660Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 3,
+        "t_index": 5,
+        "forecast_t1": 498,
+        "realized_t1": 509,
+        "score_t1": 44.99999999999999,
+        "rho": 0.9,
+        "mu": 500,
+        "sigma_e": 20,
+        "encoding_condition": "forced",
+        "distractor_task": "size",
+        "forecast_started_ms": 128651.89999997616,
+        "forecast_submitted_ms": 132131.10000002384,
+        "feedback_started_ms": 132132.89999997616,
+        "feedback_ended_ms": 137228.39999997616,
+        "timestamp": "2026-04-16T21:07:29.671Z"
+      }
+    ]
+  },
+  "distractor": {
+    "events": [
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "STRANGER",
+        "choice": "B",
+        "rt_ms": 2766.899999976158,
+        "shown_at_ms": 50863,
+        "responded_at_ms": 53629.89999997616,
+        "started_at_iso": "2026-04-16T21:06:03.304Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "SHELF",
+        "choice": "B",
+        "rt_ms": 860.1999999284744,
+        "shown_at_ms": 53630.10000002384,
+        "responded_at_ms": 54490.299999952316,
+        "started_at_iso": "2026-04-16T21:06:03.304Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "NOOSE",
+        "choice": "A",
+        "rt_ms": 1327.8999999761581,
+        "shown_at_ms": 54490.5,
+        "responded_at_ms": 55818.39999997616,
+        "started_at_iso": "2026-04-16T21:06:03.304Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "CUFF",
+        "choice": "A",
+        "rt_ms": 937.6999999284744,
+        "shown_at_ms": 55818.60000002384,
+        "responded_at_ms": 56756.299999952316,
+        "started_at_iso": "2026-04-16T21:06:03.304Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "UNIVERSE",
+        "choice": "B",
+        "rt_ms": 808,
+        "shown_at_ms": 56756.39999997616,
+        "responded_at_ms": 57564.39999997616,
+        "started_at_iso": "2026-04-16T21:06:03.304Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 1,
+        "distractor_task": "size",
+        "interval_event": true,
+        "dt_sec": 7.49007807187757,
+        "started_ms": 50862.799999952316,
+        "ended_ms": 58360.299999952316,
+        "timestamp": "2026-04-16T21:06:10.802Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "PEAR",
+        "choice": "A",
+        "rt_ms": 1149.8999999761581,
+        "shown_at_ms": 60916.39999997616,
+        "responded_at_ms": 62066.299999952316,
+        "started_at_iso": "2026-04-16T21:06:13.358Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "VINEGAR",
+        "choice": "A",
+        "rt_ms": 1115.8000000715256,
+        "shown_at_ms": 62066.799999952316,
+        "responded_at_ms": 63182.60000002384,
+        "started_at_iso": "2026-04-16T21:06:13.358Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "ATMOSPHERE",
+        "choice": "B",
+        "rt_ms": 761,
+        "shown_at_ms": 63182.699999928474,
+        "responded_at_ms": 63943.699999928474,
+        "started_at_iso": "2026-04-16T21:06:13.358Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "OUTDOORS",
+        "choice": "B",
+        "rt_ms": 855.6000000238419,
+        "shown_at_ms": 63943.89999997616,
+        "responded_at_ms": 64799.5,
+        "started_at_iso": "2026-04-16T21:06:13.358Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "CEREAL",
+        "choice": "A",
+        "rt_ms": 817,
+        "shown_at_ms": 64799.60000002384,
+        "responded_at_ms": 65616.60000002384,
+        "started_at_iso": "2026-04-16T21:06:13.358Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "CHAIR",
+        "choice": "B",
+        "rt_ms": 1045.2000000476837,
+        "shown_at_ms": 65616.89999997616,
+        "responded_at_ms": 66662.10000002384,
+        "started_at_iso": "2026-04-16T21:06:13.358Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "OWNER",
+        "choice": "B",
+        "rt_ms": 882.6000000238419,
+        "shown_at_ms": 66662.19999992847,
+        "responded_at_ms": 67544.79999995232,
+        "started_at_iso": "2026-04-16T21:06:13.358Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "DOG",
+        "choice": "A",
+        "rt_ms": 1126.2999999523163,
+        "shown_at_ms": 67544.89999997616,
+        "responded_at_ms": 68671.19999992847,
+        "started_at_iso": "2026-04-16T21:06:13.358Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 2,
+        "distractor_task": "size",
+        "interval_event": true,
+        "dt_sec": 7.91819184932103,
+        "started_ms": 60916.39999997616,
+        "ended_ms": 68834.79999995232,
+        "timestamp": "2026-04-16T21:06:21.277Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "GANG",
+        "choice": "B",
+        "rt_ms": 1204.8999999761581,
+        "shown_at_ms": 72296.79999995232,
+        "responded_at_ms": 73501.69999992847,
+        "started_at_iso": "2026-04-16T21:06:24.738Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "VILLAGE",
+        "choice": "B",
+        "rt_ms": 981.3000000715256,
+        "shown_at_ms": 73501.79999995232,
+        "responded_at_ms": 74483.10000002384,
+        "started_at_iso": "2026-04-16T21:06:24.738Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "TOTE",
+        "choice": "A",
+        "rt_ms": 1094.2000000476837,
+        "shown_at_ms": 74483.29999995232,
+        "responded_at_ms": 75577.5,
+        "started_at_iso": "2026-04-16T21:06:24.738Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "DAISY",
+        "choice": "A",
+        "rt_ms": 920.2999999523163,
+        "shown_at_ms": 75577.5,
+        "responded_at_ms": 76497.79999995232,
+        "started_at_iso": "2026-04-16T21:06:24.738Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "CHEERLEADER",
+        "choice": "B",
+        "rt_ms": 817.6000000238419,
+        "shown_at_ms": 76497.89999997616,
+        "responded_at_ms": 77315.5,
+        "started_at_iso": "2026-04-16T21:06:24.738Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "DRIVER",
+        "choice": "B",
+        "rt_ms": 1645.5,
+        "shown_at_ms": 77315.60000002384,
+        "responded_at_ms": 78961.10000002384,
+        "started_at_iso": "2026-04-16T21:06:24.738Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "HARP",
+        "choice": "B",
+        "rt_ms": 1256.8000000715256,
+        "shown_at_ms": 78961.19999992847,
+        "responded_at_ms": 80218,
+        "started_at_iso": "2026-04-16T21:06:24.738Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "HOME",
+        "choice": "B",
+        "rt_ms": 884,
+        "shown_at_ms": 80218.10000002384,
+        "responded_at_ms": 81102.10000002384,
+        "started_at_iso": "2026-04-16T21:06:24.738Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "OTTER",
+        "choice": "B",
+        "rt_ms": 1250.1000000238419,
+        "shown_at_ms": 81102.19999992847,
+        "responded_at_ms": 82352.29999995232,
+        "started_at_iso": "2026-04-16T21:06:24.738Z"
+      },
+      {
+        "phase": "observation",
+        "obs_index": 3,
+        "distractor_task": "size",
+        "interval_event": true,
+        "dt_sec": 10.727576078185933,
+        "started_ms": 72296.69999992847,
+        "ended_ms": 83026.5,
+        "timestamp": "2026-04-16T21:06:35.468Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "VOLUNTEER",
+        "choice": "B",
+        "rt_ms": 2414.9000000953674,
+        "shown_at_ms": 94650.19999992847,
+        "responded_at_ms": 97065.10000002384,
+        "started_at_iso": "2026-04-16T21:06:47.092Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "SUGAR",
+        "choice": "A",
+        "rt_ms": 930.1000000238419,
+        "shown_at_ms": 97065.29999995232,
+        "responded_at_ms": 97995.39999997616,
+        "started_at_iso": "2026-04-16T21:06:47.092Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "OPERA",
+        "choice": "B",
+        "rt_ms": 843.7999999523163,
+        "shown_at_ms": 97995.5,
+        "responded_at_ms": 98839.29999995232,
+        "started_at_iso": "2026-04-16T21:06:47.092Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "RIB",
+        "choice": "A",
+        "rt_ms": 1396.6000000238419,
+        "shown_at_ms": 98839.5,
+        "responded_at_ms": 100236.10000002384,
+        "started_at_iso": "2026-04-16T21:06:47.092Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "DUST",
+        "choice": "A",
+        "rt_ms": 1601.1999999284744,
+        "shown_at_ms": 100236.10000002384,
+        "responded_at_ms": 101837.29999995232,
+        "started_at_iso": "2026-04-16T21:06:47.092Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "CHIME",
+        "choice": "A",
+        "rt_ms": 1676.8999999761581,
+        "shown_at_ms": 101837.39999997616,
+        "responded_at_ms": 103514.29999995232,
+        "started_at_iso": "2026-04-16T21:06:47.092Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "SAPPHIRE",
+        "choice": "A",
+        "rt_ms": 913.6000000238419,
+        "shown_at_ms": 103514.39999997616,
+        "responded_at_ms": 104428,
+        "started_at_iso": "2026-04-16T21:06:47.092Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 1,
+        "t_index": 3,
+        "distractor_task": "size",
+        "interval_event": true,
+        "dt_sec": 10.581344496175289,
+        "started_ms": 94650,
+        "ended_ms": 105234.79999995232,
+        "timestamp": "2026-04-16T21:06:57.677Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "TOMATO",
+        "choice": "A",
+        "rt_ms": 2042.6000000238419,
+        "shown_at_ms": 117218.5,
+        "responded_at_ms": 119261.10000002384,
+        "started_at_iso": "2026-04-16T21:07:09.661Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "CRAB",
+        "choice": "A",
+        "rt_ms": 1566.6000000238419,
+        "shown_at_ms": 119261.19999992847,
+        "responded_at_ms": 120827.79999995232,
+        "started_at_iso": "2026-04-16T21:07:09.661Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "SCREWDRIVER",
+        "choice": "A",
+        "rt_ms": 830.2000000476837,
+        "shown_at_ms": 120827.89999997616,
+        "responded_at_ms": 121658.10000002384,
+        "started_at_iso": "2026-04-16T21:07:09.661Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "STONE",
+        "choice": "A",
+        "rt_ms": 753,
+        "shown_at_ms": 121658.29999995232,
+        "responded_at_ms": 122411.29999995232,
+        "started_at_iso": "2026-04-16T21:07:09.661Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "FOOTBALL",
+        "choice": "A",
+        "rt_ms": 1396.3999999761581,
+        "shown_at_ms": 122411.5,
+        "responded_at_ms": 123807.89999997616,
+        "started_at_iso": "2026-04-16T21:07:09.661Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "LABYRINTH",
+        "choice": "A",
+        "rt_ms": 1981.3999999761581,
+        "shown_at_ms": 123808.10000002384,
+        "responded_at_ms": 125789.5,
+        "started_at_iso": "2026-04-16T21:07:09.661Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "COAT",
+        "choice": "A",
+        "rt_ms": 1463.5,
+        "shown_at_ms": 125789.69999992847,
+        "responded_at_ms": 127253.19999992847,
+        "started_at_iso": "2026-04-16T21:07:09.661Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 2,
+        "t_index": 4,
+        "distractor_task": "size",
+        "interval_event": true,
+        "dt_sec": 10.670288542143458,
+        "started_ms": 117218.39999997616,
+        "ended_ms": 127893.19999992847,
+        "timestamp": "2026-04-16T21:07:20.336Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 3,
+        "t_index": 5,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "MOTOR",
+        "choice": "B",
+        "rt_ms": 1809.3999999761581,
+        "shown_at_ms": 137229.79999995232,
+        "responded_at_ms": 139039.19999992847,
+        "started_at_iso": "2026-04-16T21:07:29.673Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 3,
+        "t_index": 5,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "PAGE",
+        "choice": "A",
+        "rt_ms": 1027,
+        "shown_at_ms": 139039.29999995232,
+        "responded_at_ms": 140066.29999995232,
+        "started_at_iso": "2026-04-16T21:07:29.673Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 3,
+        "t_index": 5,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "BURGLAR",
+        "choice": "B",
+        "rt_ms": 787.5,
+        "shown_at_ms": 140066.5,
+        "responded_at_ms": 140854,
+        "started_at_iso": "2026-04-16T21:07:29.673Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 3,
+        "t_index": 5,
+        "distractor_task": "size",
+        "prompt": "Will this item fit in a shoebox?",
+        "word": "SENATOR",
+        "choice": "B",
+        "rt_ms": 907.9000000953674,
+        "shown_at_ms": 140854.19999992847,
+        "responded_at_ms": 141762.10000002384,
+        "started_at_iso": "2026-04-16T21:07:29.673Z"
+      },
+      {
+        "phase": "forecast",
+        "forecast_index": 3,
+        "t_index": 5,
+        "distractor_task": "size",
+        "interval_event": true,
+        "dt_sec": 6.555765196626176,
+        "started_ms": 137229.69999992847,
+        "ended_ms": 143793.39999997616,
+        "timestamp": "2026-04-16T21:07:36.237Z"
+      }
+    ],
+    "event_note": "Most rows are word judgments (word, choice, rt_ms). Rows with interval_event true end a timed distractor block."
+  },
+  "diagnostics": {
+    "session_log": [
+      {
+        "type": "page_loaded",
+        "wall_iso": "2026-04-16T21:05:12.506Z",
+        "perf_ms": 65.69999992847443,
+        "url": "https://pennmem.github.io/Overreaction/?debug=1"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:05:14.225Z",
+        "perf_ms": 1784.1999999284744,
+        "screen": "screen-consent",
+        "duration_ms": 1718.4000000953674
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:05:14.225Z",
+        "perf_ms": 1784.3999999761581,
+        "screen": "screen-instructions"
+      },
+      {
+        "type": "task_started",
+        "wall_iso": "2026-04-16T21:06:00.552Z",
+        "perf_ms": 48110.799999952316
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:06:00.552Z",
+        "perf_ms": 48111,
+        "screen": "screen-instructions",
+        "duration_ms": 46326.89999997616
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:06:00.553Z",
+        "perf_ms": 48111.10000002384,
+        "screen": "screen-observe"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:06:03.302Z",
+        "perf_ms": 50861,
+        "screen": "screen-observe",
+        "duration_ms": 2750
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:06:03.303Z",
+        "perf_ms": 50861.199999928474,
+        "screen": "screen-distractor"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:06:10.802Z",
+        "perf_ms": 58360.5,
+        "screen": "screen-distractor",
+        "duration_ms": 7499.399999976158
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:06:10.802Z",
+        "perf_ms": 58360.60000002384,
+        "screen": "screen-observe"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:06:13.357Z",
+        "perf_ms": 60915.299999952316,
+        "screen": "screen-observe",
+        "duration_ms": 2554.899999976158
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:06:13.357Z",
+        "perf_ms": 60915.39999997616,
+        "screen": "screen-distractor"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:06:21.277Z",
+        "perf_ms": 68835,
+        "screen": "screen-distractor",
+        "duration_ms": 7919.600000023842
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:06:21.277Z",
+        "perf_ms": 68835.10000002384,
+        "screen": "screen-observe"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:06:24.737Z",
+        "perf_ms": 72295.39999997616,
+        "screen": "screen-observe",
+        "duration_ms": 3460.5
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:06:24.737Z",
+        "perf_ms": 72295.5,
+        "screen": "screen-distractor"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:06:35.469Z",
+        "perf_ms": 83026.89999997616,
+        "screen": "screen-distractor",
+        "duration_ms": 10731.5
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:06:35.469Z",
+        "perf_ms": 83027.10000002384,
+        "screen": "screen-forecast-intro"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:06:37.123Z",
+        "perf_ms": 84680.69999992847,
+        "screen": "screen-forecast-intro",
+        "duration_ms": 1653.7000000476837
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:06:37.123Z",
+        "perf_ms": 84680.79999995232,
+        "screen": "screen-forecast"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:06:42.081Z",
+        "perf_ms": 89638.39999997616,
+        "screen": "screen-forecast",
+        "duration_ms": 4957.799999952316
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:06:42.081Z",
+        "perf_ms": 89638.5,
+        "screen": "screen-feedback"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:06:47.091Z",
+        "perf_ms": 94648.69999992847,
+        "screen": "screen-feedback",
+        "duration_ms": 5010.299999952316
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:06:47.091Z",
+        "perf_ms": 94648.79999995232,
+        "screen": "screen-distractor"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:06:57.677Z",
+        "perf_ms": 105234.89999997616,
+        "screen": "screen-distractor",
+        "duration_ms": 10586.200000047684
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:06:57.677Z",
+        "perf_ms": 105235.10000002384,
+        "screen": "screen-forecast-intro"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:07:00.398Z",
+        "perf_ms": 107955.39999997616,
+        "screen": "screen-forecast-intro",
+        "duration_ms": 2720.399999976158
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:07:00.398Z",
+        "perf_ms": 107955.5,
+        "screen": "screen-forecast"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:07:03.891Z",
+        "perf_ms": 111448.60000002384,
+        "screen": "screen-forecast",
+        "duration_ms": 3493.3000000715256
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:07:03.891Z",
+        "perf_ms": 111448.69999992847,
+        "screen": "screen-feedback"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:07:09.660Z",
+        "perf_ms": 117217,
+        "screen": "screen-feedback",
+        "duration_ms": 5768.399999976158
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:07:09.660Z",
+        "perf_ms": 117217.19999992847,
+        "screen": "screen-distractor"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:07:20.336Z",
+        "perf_ms": 127893.29999995232,
+        "screen": "screen-distractor",
+        "duration_ms": 10676.299999952316
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:07:20.336Z",
+        "perf_ms": 127893.29999995232,
+        "screen": "screen-forecast-intro"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:07:21.094Z",
+        "perf_ms": 128650.79999995232,
+        "screen": "screen-forecast-intro",
+        "duration_ms": 757.5
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:07:21.094Z",
+        "perf_ms": 128650.89999997616,
+        "screen": "screen-forecast"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:07:24.574Z",
+        "perf_ms": 132131.10000002384,
+        "screen": "screen-forecast",
+        "duration_ms": 3480.3000000715256
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:07:24.574Z",
+        "perf_ms": 132131.10000002384,
+        "screen": "screen-feedback"
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:07:29.672Z",
+        "perf_ms": 137228.5,
+        "screen": "screen-feedback",
+        "duration_ms": 5097.399999976158
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:07:29.672Z",
+        "perf_ms": 137228.60000002384,
+        "screen": "screen-distractor"
+      },
+      {
+        "type": "task_finished",
+        "wall_iso": "2026-04-16T21:07:36.237Z",
+        "perf_ms": 143793.69999992847,
+        "total_score": 44.99999999999999
+      },
+      {
+        "type": "screen_exit",
+        "wall_iso": "2026-04-16T21:07:36.237Z",
+        "perf_ms": 143793.69999992847,
+        "screen": "screen-distractor",
+        "duration_ms": 6565.199999928474
+      },
+      {
+        "type": "screen_enter",
+        "wall_iso": "2026-04-16T21:07:36.237Z",
+        "perf_ms": 143793.79999995232,
+        "screen": "screen-done"
+      }
+    ],
+    "screen_timings": [
+      {
+        "screen": "screen-consent",
+        "entered_perf_ms": 65.69999992847443,
+        "exited_perf_ms": 1784.1000000238419,
+        "duration_ms": 1718.4000000953674,
+        "entered_wall_iso": "2026-04-16T21:05:12.506Z"
+      },
+      {
+        "screen": "screen-instructions",
+        "entered_perf_ms": 1784.1000000238419,
+        "exited_perf_ms": 48111,
+        "duration_ms": 46326.89999997616,
+        "entered_wall_iso": "2026-04-16T21:05:14.225Z"
+      },
+      {
+        "screen": "screen-observe",
+        "entered_perf_ms": 48111,
+        "exited_perf_ms": 50861,
+        "duration_ms": 2750,
+        "entered_wall_iso": "2026-04-16T21:06:00.552Z"
+      },
+      {
+        "screen": "screen-distractor",
+        "entered_perf_ms": 50861,
+        "exited_perf_ms": 58360.39999997616,
+        "duration_ms": 7499.399999976158,
+        "entered_wall_iso": "2026-04-16T21:06:03.302Z"
+      },
+      {
+        "screen": "screen-observe",
+        "entered_perf_ms": 58360.39999997616,
+        "exited_perf_ms": 60915.299999952316,
+        "duration_ms": 2554.899999976158,
+        "entered_wall_iso": "2026-04-16T21:06:10.802Z"
+      },
+      {
+        "screen": "screen-distractor",
+        "entered_perf_ms": 60915.299999952316,
+        "exited_perf_ms": 68834.89999997616,
+        "duration_ms": 7919.600000023842,
+        "entered_wall_iso": "2026-04-16T21:06:13.357Z"
+      },
+      {
+        "screen": "screen-observe",
+        "entered_perf_ms": 68834.89999997616,
+        "exited_perf_ms": 72295.39999997616,
+        "duration_ms": 3460.5,
+        "entered_wall_iso": "2026-04-16T21:06:21.277Z"
+      },
+      {
+        "screen": "screen-distractor",
+        "entered_perf_ms": 72295.39999997616,
+        "exited_perf_ms": 83026.89999997616,
+        "duration_ms": 10731.5,
+        "entered_wall_iso": "2026-04-16T21:06:24.737Z"
+      },
+      {
+        "screen": "screen-forecast-intro",
+        "entered_perf_ms": 83026.89999997616,
+        "exited_perf_ms": 84680.60000002384,
+        "duration_ms": 1653.7000000476837,
+        "entered_wall_iso": "2026-04-16T21:06:35.469Z"
+      },
+      {
+        "screen": "screen-forecast",
+        "entered_perf_ms": 84680.60000002384,
+        "exited_perf_ms": 89638.39999997616,
+        "duration_ms": 4957.799999952316,
+        "entered_wall_iso": "2026-04-16T21:06:37.123Z"
+      },
+      {
+        "screen": "screen-feedback",
+        "entered_perf_ms": 89638.39999997616,
+        "exited_perf_ms": 94648.69999992847,
+        "duration_ms": 5010.299999952316,
+        "entered_wall_iso": "2026-04-16T21:06:42.081Z"
+      },
+      {
+        "screen": "screen-distractor",
+        "entered_perf_ms": 94648.69999992847,
+        "exited_perf_ms": 105234.89999997616,
+        "duration_ms": 10586.200000047684,
+        "entered_wall_iso": "2026-04-16T21:06:47.091Z"
+      },
+      {
+        "screen": "screen-forecast-intro",
+        "entered_perf_ms": 105234.89999997616,
+        "exited_perf_ms": 107955.29999995232,
+        "duration_ms": 2720.399999976158,
+        "entered_wall_iso": "2026-04-16T21:06:57.677Z"
+      },
+      {
+        "screen": "screen-forecast",
+        "entered_perf_ms": 107955.29999995232,
+        "exited_perf_ms": 111448.60000002384,
+        "duration_ms": 3493.3000000715256,
+        "entered_wall_iso": "2026-04-16T21:07:00.398Z"
+      },
+      {
+        "screen": "screen-feedback",
+        "entered_perf_ms": 111448.60000002384,
+        "exited_perf_ms": 117217,
+        "duration_ms": 5768.399999976158,
+        "entered_wall_iso": "2026-04-16T21:07:03.891Z"
+      },
+      {
+        "screen": "screen-distractor",
+        "entered_perf_ms": 117217,
+        "exited_perf_ms": 127893.29999995232,
+        "duration_ms": 10676.299999952316,
+        "entered_wall_iso": "2026-04-16T21:07:09.660Z"
+      },
+      {
+        "screen": "screen-forecast-intro",
+        "entered_perf_ms": 127893.29999995232,
+        "exited_perf_ms": 128650.79999995232,
+        "duration_ms": 757.5,
+        "entered_wall_iso": "2026-04-16T21:07:20.336Z"
+      },
+      {
+        "screen": "screen-forecast",
+        "entered_perf_ms": 128650.79999995232,
+        "exited_perf_ms": 132131.10000002384,
+        "duration_ms": 3480.3000000715256,
+        "entered_wall_iso": "2026-04-16T21:07:21.094Z"
+      },
+      {
+        "screen": "screen-feedback",
+        "entered_perf_ms": 132131.10000002384,
+        "exited_perf_ms": 137228.5,
+        "duration_ms": 5097.399999976158,
+        "entered_wall_iso": "2026-04-16T21:07:24.574Z"
+      },
+      {
+        "screen": "screen-distractor",
+        "entered_perf_ms": 137228.5,
+        "exited_perf_ms": 143793.69999992847,
+        "duration_ms": 6565.199999928474,
+        "entered_wall_iso": "2026-04-16T21:07:29.672Z"
+      }
+    ],
+    "client": {
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "viewport": {
+        "width": 1485,
+        "height": 977
+      }
+    }
+  }
+}

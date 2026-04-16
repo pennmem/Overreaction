@@ -38,7 +38,7 @@
     .dist-hint { font-size: 1rem; color: #666; user-select: none; }
     .btn-primary { background: #111; color: #fff; border-color:#111; }
     .btn-choice { min-width: 200px; padding: 12px 14px; border-radius: 12px; background: #fafafa; font-size: 1.1rem; }
-    .hidden { display:none; }
+    .hidden { display: none; }
     .typing-block {
       display: flex;
       flex-direction: column;
@@ -46,6 +46,9 @@
       width: 100%;
       text-align: center;
       margin-top: 10px;
+    }
+    .typing-block.hidden {
+      display: none !important;
     }
     .typing-block label { display: block; width: 100%; text-align: center; margin: 10px 0 6px; }
     .typing-block input[type="number"] { display: block; margin-left: auto; margin-right: auto; }
@@ -121,10 +124,6 @@
         </p>
         <p class="muted">
           You will receive a score for each forecast based on how accurate it is. Your cumulative score across all forecasting rounds is then converted linearly into a bonus roughly between $0 and $5. You will also receive an additional base payment of $3.
-        </p>
-        <p class="muted" style="margin-top:12px;">
-          <strong>Typing mode (this session):</strong> <code id="instr-typing-mode"></code>.
-          The same mode applies when you view each past value and when you see each forecast outcome — in <em>forced</em> mode you must type the number exactly before continuing; in <em>passive</em> mode you press Enter without typing that number.
         </p>
       </div>
     </div>
@@ -282,7 +281,6 @@
       <p class="big" style="margin:0 0 8px;">Session (debug)</p>
       <p class="muted">Participant ID: <code id="pid"></code></p>
       <p class="muted">Condition (ρ): <code id="rho"></code></p>
-      <p class="muted">Typing mode (observation + forecast feedback): <code id="enc"></code></p>
       <p class="muted">Distractor task: <code id="dist"></code></p>
     </div>
 
@@ -406,9 +404,7 @@
 
   el("pid").textContent = participant_id;
   el("rho").textContent = rho.toString();
-  el("enc").textContent = encoding_condition;
   el("dist").textContent = distractor_task;
-  el("instr-typing-mode").textContent = encoding_condition;
 
   el("obs-total").textContent = String(N_OBS);
   el("fc-total").textContent = String(N_FORECAST);
@@ -584,29 +580,35 @@
 
     const trialStart = performance.now();
 
-    el("obs-forced").classList.remove("hidden");
-    el("obs-passive").classList.add("hidden");
+    if (obs_encoding === "forced") {
+      el("obs-instruction").textContent = "Type the current value:";
+      el("obs-forced").classList.remove("hidden");
+      el("obs-passive").classList.add("hidden");
 
-    await new Promise((resolve) => {
-      const input = el("obs-type");
-      focusObservationInput();
+      await new Promise((resolve) => {
+        const input = el("obs-type");
+        focusObservationInput();
 
-      function onKeyDown(ev) {
-        if (ev.key !== "Enter" && ev.key !== "NumpadEnter") return;
-        ev.preventDefault();
-        ev.stopPropagation();
-        if (obs_encoding === "forced") {
+        function onKeyDown(ev) {
+          if (ev.key !== "Enter" && ev.key !== "NumpadEnter") return;
+          ev.preventDefault();
+          ev.stopPropagation();
           const typed = clampInt(Number(input.value), X_MIN, X_MAX);
           if (typed !== x_i) {
             el("obs-err").textContent = "That doesn't match. Please re-enter the value exactly.";
             return;
           }
+          input.removeEventListener("keydown", onKeyDown);
+          resolve();
         }
-        input.removeEventListener("keydown", onKeyDown);
-        resolve();
-      }
-      input.addEventListener("keydown", onKeyDown);
-    });
+        input.addEventListener("keydown", onKeyDown);
+      });
+    } else {
+      el("obs-instruction").textContent = "Observe the value.";
+      el("obs-forced").classList.add("hidden");
+      el("obs-passive").classList.remove("hidden");
+      await waitForEnterOnly({ enterDelayMs: 150 });
+    }
 
     const trialEnd = performance.now();
 
@@ -685,29 +687,33 @@
     );
 
     const fbStart = performance.now();
-    el("fb-forced").classList.remove("hidden");
-    el("fb-passive").classList.add("hidden");
+    if (encoding_condition === "forced") {
+      el("fb-forced").classList.remove("hidden");
+      el("fb-passive").classList.add("hidden");
 
-    await new Promise((resolve) => {
-      const input = el("fb-type");
-      focusFeedbackInput();
+      await new Promise((resolve) => {
+        const input = el("fb-type");
+        focusFeedbackInput();
 
-      function onKeyDown(ev) {
-        if (ev.key !== "Enter" && ev.key !== "NumpadEnter") return;
-        ev.preventDefault();
-        ev.stopPropagation();
-        if (encoding_condition === "forced") {
+        function onKeyDown(ev) {
+          if (ev.key !== "Enter" && ev.key !== "NumpadEnter") return;
+          ev.preventDefault();
+          ev.stopPropagation();
           const typed = clampInt(Number(input.value), X_MIN, X_MAX);
           if (typed !== actual) {
             el("fb-err").textContent = "That doesn't match. Please type the actual value exactly.";
             return;
           }
+          input.removeEventListener("keydown", onKeyDown);
+          resolve();
         }
-        input.removeEventListener("keydown", onKeyDown);
-        resolve();
-      }
-      input.addEventListener("keydown", onKeyDown);
-    });
+        input.addEventListener("keydown", onKeyDown);
+      });
+    } else {
+      el("fb-forced").classList.add("hidden");
+      el("fb-passive").classList.remove("hidden");
+      await waitForEnterOnly({ enterDelayMs: 150 });
+    }
     const fbEnd = performance.now();
 
     trials.push({
