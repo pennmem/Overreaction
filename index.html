@@ -282,7 +282,7 @@
     <p class="big"><code id="ccode"></code></p>
 
     <div id="debug-download" class="debug-meta" style="margin-top:14px;">
-      <p class="muted">Download session JSON (researcher / pilot only):</p>
+      <p class="muted">Download session JSON:</p>
       <button id="btn-download" type="button">Download data</button>
     </div>
   </div>
@@ -890,19 +890,93 @@
     const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = `forecast_task_${participant_id}.json`;
+    const pid =
+      obj && obj.participant && obj.participant.participant_id
+        ? obj.participant.participant_id
+        : participant_id;
+    a.download = `forecast_task_${pid}.json`;
     a.click();
     URL.revokeObjectURL(a.href);
   }
-  // stores Json in local storage, should change for when we officially launch study 
+
+  function buildSessionExport(ccode, ended_wall_iso) {
+    const bonusUsd = totalScore * BONUS_PER_SCORE;
+    const totalPayUsd = BASE_PAY_USD + bonusUsd;
+    return {
+      completion: {
+        code: ccode,
+        ended_wall_iso
+      },
+      participant: (() => {
+        const p = { participant_id };
+        if (workerId !== "NA" && (assignmentId !== "NA" || hitId !== "NA")) {
+          if (assignmentId !== "NA") p.mturk_assignment_id = assignmentId;
+          if (hitId !== "NA") p.mturk_hit_id = hitId;
+        }
+        return p;
+      })(),
+      design: {
+        rho,
+        forecast_feedback_encoding: encoding_condition,
+        observation_encoding_url_override: obs_encoding_override,
+        distractor_task,
+        time_series: {
+          mu: MU,
+          sigma_e: SIGMA_E,
+          bounds: { min: X_MIN, max: X_MAX }
+        },
+        trial_counts: {
+          observation: N_OBS,
+          forecast: N_FORECAST
+        },
+        distractor_block_duration_sec: { min: DMIN_SEC, max: DMAX_SEC }
+      },
+      payment: {
+        total_score: totalScore,
+        base_pay_usd: BASE_PAY_USD,
+        bonus_per_score: BONUS_PER_SCORE,
+        bonus_usd: bonusUsd,
+        total_pay_usd: totalPayUsd
+      },
+      series: {
+        realized_values: x.slice(1),
+        index_note:
+          "realized_values[j] is x[j+1] from the generator (1-based). Observation trial i shows x[i]. Forecast k predicts x[t+1] with t = n_observation + k - 1."
+      },
+      trials: {
+        observations: obs_trials,
+        forecasts: trials
+      },
+      distractor: {
+        events: distractor_events,
+        event_note:
+          "Most rows are word judgments (word, choice, rt_ms). Rows with interval_event true end a timed distractor block."
+      },
+      diagnostics: {
+        session_log: sessionLog,
+        screen_timings: screenTimings,
+        client: {
+          user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
+          viewport:
+            typeof window !== "undefined"
+              ? { width: window.innerWidth, height: window.innerHeight }
+              : null
+        }
+      }
+    };
+  }
+
+  // stores Json in local storage, should change for when we officially launch study
   function saveSessionToLocalStorage(fullOut) {
-    const key = `${LS_SESSION_PREFIX}::${participant_id}::${fullOut.completion_code}`;
-    fullOut.local_storage_key = key;
+    const pid = fullOut.participant.participant_id;
+    const ccode = fullOut.completion.code;
+    const key = `${LS_SESSION_PREFIX}::${pid}::${ccode}`;
+    const forStore = { ...fullOut, local_storage_key: key };
     try {
-      localStorage.setItem(key, JSON.stringify(fullOut));
+      localStorage.setItem(key, JSON.stringify(forStore));
       const indexRaw = localStorage.getItem(`${LS_SESSION_PREFIX}::index`);
       const index = indexRaw ? JSON.parse(indexRaw) : [];
-      index.push({ key, saved_wall_iso: fullOut.ended_wall_iso, participant_id });
+      index.push({ key, saved_wall_iso: fullOut.completion.ended_wall_iso, participant_id: pid });
       localStorage.setItem(`${LS_SESSION_PREFIX}::index`, JSON.stringify(index.slice(-200)));
       return key;
     } catch (e) {
@@ -923,41 +997,15 @@
     el("pay-bonus").textContent = bonusUsd.toFixed(2);
     el("pay-total").textContent = totalPayUsd.toFixed(2);
 
-    const payload = {
+    const ended_wall_iso = new Date().toISOString();
+    const ccode = makeCompletionCode({
       participant_id,
-      prolific_pid,
-      workerId,
-      assignmentId,
-      hitId,
       condition_rho: rho,
-      encoding_condition,
-      obs_encoding_override: obs_encoding_override,
-      distractor_task,
-      mu: MU,
-      sigma_e: SIGMA_E,
-      n_observation: N_OBS,
-      n_forecast: N_FORECAST,
-      distractor_dmin_sec: DMIN_SEC,
-      distractor_dmax_sec: DMAX_SEC,
-      total_score: totalScore,
-      base_pay_usd: BASE_PAY_USD,
-      bonus_per_score: BONUS_PER_SCORE,
-      bonus_usd: bonusUsd,
-      total_pay_usd: totalPayUsd,
-      series_x: x.slice(1),
-      observation_trials: obs_trials,
-      forecast_trials: trials,
-      distractor_events,
-      session_log: sessionLog,
-      screen_timings: screenTimings,
-      user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
-      viewport: typeof window !== "undefined" ? { w: window.innerWidth, h: window.innerHeight } : null
-    };
-
-    const ccode = makeCompletionCode(payload);
+      total_score: totalScore
+    });
     el("ccode").textContent = ccode;
 
-    const fullOut = { ...payload, completion_code: ccode, ended_wall_iso: new Date().toISOString() };
+    const fullOut = buildSessionExport(ccode, ended_wall_iso);
     saveSessionToLocalStorage(fullOut);
 
     const debugBox = el("debug-download");
